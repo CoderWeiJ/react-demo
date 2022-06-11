@@ -1,27 +1,41 @@
-import React from "react"
-import SonA from "./components/SonA.jsx"
-import SonB from "./components/SonB.jsx"
+import React, { createContext } from 'react'
 
+// 1. 创建Context对象 
+const { Provider, Consumer } = createContext()
+
+
+// 3. 消费数据
+function ComC () {
+  return (
+    <Consumer >
+      {value => <div>{value}</div>}
+    </Consumer>
+  )
+}
+
+function ComA () {
+  return (
+    <ComC />
+  )
+}
+
+// 2. 提供数据
 class App extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      msg: 'APP存放共享状态值'
-    }
+  state = {
+    message: 'this is message'
   }
-
-  handleChange = (msg) => {
-    this.setState({
-      msg,
-    })
-  }
-
   render () {
+    setTimeout(() => {
+      this.setState({
+        message: '我是哈哈哈'
+      })
+    }, 3000)
     return (
-      <>
-        <SonA msg={this.state.msg} />
-        <SonB handleChange={this.handleChange} />
-      </>
+      <Provider value={this.state.message}>
+        <div className="app">
+          <ComA />
+        </div>
+      </Provider>
     )
   }
 }
