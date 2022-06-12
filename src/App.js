@@ -1,25 +1,31 @@
-import React, { useRef, useEffect } from 'react'
-import { Button } from 'antd'
+import React from 'react'
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom"
 import './App.css'
 
-function Hi () {
+function Home () {
   return (
-    <div>哈哈哈</div>
+    <div>这是Home组件</div>
+  )
+}
+function About () {
+  return (
+    <div>这是About组件</div>
   )
 }
 
 function App () {
-  const testRef = useRef(null) // 相当于绑定虚拟dom
-  const hiRef = useRef(null)
-  useEffect(() => {
-    console.log('testRef: ', testRef)
-    console.log('a: ', hiRef)
-  })
   return (
-    <>
-      <Button ref={testRef} type='primary' >点击+1</Button>
-      <Hi ref={hiRef} />
-    </>
+    <Router>
+      <div className="nav">
+        <Link to='/'>Home</Link>
+        <Link to='/about'>About</Link>
+      </div>
+
+      <Routes>
+        <Route path='/' element={<Home />}></Route>
+        <Route path='/about' element={<About />}></Route>
+      </Routes>
+    </Router>
   )
 }
 

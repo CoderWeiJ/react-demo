@@ -1,1 +1,11 @@
 @import '~antd/dist/antd.css';
+
+.nav {
+  display: flex;
+  column-gap: 5px;
+}
+.nav a {
+  height: 25px;
+  line-height: 25px;
+  background-color: #ccc;
+}
