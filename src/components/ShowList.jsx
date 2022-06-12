@@ -1,14 +1,11 @@
 import '../assets/css/ShowList.css'
-function ShowList(props) {
-  const { id, name, age, handlerDelete } = props
-  return (
-    <div className="wrap">
-      <div>id: {id}</div>
-      <div>name: {name}</div>
-      <div>age: {age}</div>
-      <button onClick={() => handlerDelete(id)}>删除列表</button>
-    </div>
-  )
+import PropTypes from 'prop-types'
+function ShowList({ list = ['a', 'b'] }) {
+  return <div className="wrap">这里是ShowList: {list}</div>
+}
+
+ShowList.propTypes = {
+  list: PropTypes.array, // 表名list是array类型，必传
 }
 
 export default ShowList
