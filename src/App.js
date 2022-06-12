@@ -1,15 +1,24 @@
-// import React, { useState, useEffect } from 'react'
+import React, { useRef, useEffect } from 'react'
 import { Button } from 'antd'
 import './App.css'
 
-import useLocalStorage from './hooks/useLocalStorage.js'
+function Hi () {
+  return (
+    <div>哈哈哈</div>
+  )
+}
 
 function App () {
-  const [msg, setMsg] = useLocalStorage('my', 1)
-
+  const testRef = useRef(null) // 相当于绑定虚拟dom
+  const hiRef = useRef(null)
+  useEffect(() => {
+    console.log('testRef: ', testRef)
+    console.log('a: ', hiRef)
+  })
   return (
     <>
-      <Button type='primary' onClick={() => setMsg(msg + 1)}>点击+1</Button>
+      <Button ref={testRef} type='primary' >点击+1</Button>
+      <Hi ref={hiRef} />
     </>
   )
 }
