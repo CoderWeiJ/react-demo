@@ -2,12 +2,18 @@ import React from 'react'
 import { BrowserRouter as Router, Routes, Route, Link, useParams, Outlet } from "react-router-dom"
 import './App.css'
 import Login from './components/Login.jsx'
-function Home () {
+function Home() {
   return (
     <div>这是Home组件</div>
   )
 }
-function About () {
+// 未找到匹配路由时，加载这个组件
+function NotFound() {
+  return (
+    <div>这是NotFound组件</div>
+  )
+}
+function About() {
   // const [params] = useSearchParams()
   const params = useParams()
   console.log('params: ', params)
@@ -21,7 +27,7 @@ function About () {
 }
 
 function School() {
-  return(
+  return (
     <div>这里是学校组件</div>
   )
 }
@@ -32,7 +38,7 @@ function Company() {
   )
 }
 
-function App () {
+function App() {
 
   return (
 
@@ -51,6 +57,8 @@ function App () {
           <Route index element={<School />}></Route>
           <Route path='company' element={<Company />} />
         </Route>
+        {/* 404，当匹配不到相应路由时，加载最后一个，注意，需要写在所有路由的最后 */}
+        <Route path='*' element={<NotFound />}></Route>
       </Routes>
 
 
