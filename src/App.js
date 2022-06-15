@@ -9,7 +9,8 @@ import { observer } from 'mobx-react-lite'
 function App() {
   return (
     <>
-      <Button type='primary' onClick={counterStore.addCount}>{counterStore.count}</Button>
+      <Button type='primary' onClick={counterStore.addList}>改变数组内容</Button>
+      <p>源数据{counterStore.list}, computed属性：{counterStore.filterList}</p>
     </>
   )
 }
