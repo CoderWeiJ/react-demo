@@ -1,16 +1,20 @@
 import React from 'react'
+import { observer } from 'mobx-react-lite'
 // import { BrowserRouter as Router, Routes, Route, Link, useParams, Outlet } from "react-router-dom"
 import './App.css'
-import { Button } from 'antd'
-// 引入定义好的coutnerStore
-import counterStore from './mobx/CounterStore.js'
+
+import { useStore } from './store/index.js'
+
+
+
+
 // 引入更新视图的关键方法
-import { observer } from 'mobx-react-lite'
 function App() {
+  const {listStore, counterStore} = useStore()
   return (
     <>
-      <Button type='primary' onClick={counterStore.addList}>改变数组内容</Button>
-      <p>源数据{counterStore.list}, computed属性：{counterStore.filterList}</p>
+    <button onClick={counterStore.addCount}>+1</button>
+    <div>{counterStore.count}</div>
     </>
   )
 }
